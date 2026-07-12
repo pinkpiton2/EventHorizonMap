@@ -86,31 +86,50 @@ const createScene = () => {
 // ---------- Клік ----------
 
 scene.onPointerObservable.add((pointerInfo) => {
-    if (pointerInfo.type !== BABYLON.PointerEventTypes.POINTERPICK) return;
-    if (pointerInfo.pickInfo?.hit && pointerInfo.pickInfo.pickedMesh?.metadata) {
+
+    if (pointerInfo.type !== BABYLON.PointerEventTypes.POINTERPICK)
+        return;
+
+    if (pointerInfo.pickInfo.hit &&
+        pointerInfo.pickInfo.pickedMesh.metadata) {
+
         const p = pointerInfo.pickInfo.pickedMesh.metadata;
+
         const container = document.getElementById("planetInfo");
+
         if (container) {
-            container.innerHTML = `<h3>${p.name}</h3>` +
-                `<b>X:</b> ${p.x.toLocaleString()}<br>` +
-                `<b>Y:</b> ${p.y.toLocaleString()}<br>` +
-                `<b>Z:</b> ${p.z.toLocaleString()}<br><br>` +
-                `<b>Radius:</b> ${p.radius.toLocaleString()} m`;
+
+            container.innerHTML = `
+                <h3>${p.name}</h3>
+
+                <b>X:</b> ${p.x.toLocaleString()}<br>
+                <b>Y:</b> ${p.y.toLocaleString()}<br>
+                <b>Z:</b> ${p.z.toLocaleString()}<br><br>
+
+                <b>Surface radius:</b><br>
+                ${p.radius.toLocaleString()} m<br><br>
+
+                <b>Gravity radius:</b><br>
+                ${p.gravity.toLocaleString()} m
+            `;
+
         }
     }
-});
-// ... (інша частина сцени)
 
-););, BABYLON.PointerEventTypes.POINTERPICK);
+}, BABYLON.PointerEventTypes.POINTERPICK);
 
-    return scene;
+
+return scene;
+
 };
+
 
 const scene = createScene();
 
 engine.runRenderLoop(() => {
     scene.render();
 });
+
 
 window.addEventListener("resize", () => {
     engine.resize();
