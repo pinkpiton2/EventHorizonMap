@@ -70,6 +70,8 @@ const createScene = () => {
 
     // ---------- Планети ----------
     planets.forEach(p => {
+		
+		console.log("CREATE:", p.name);
 
         const sphere = BABYLON.MeshBuilder.CreateSphere(
             p.name,
