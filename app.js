@@ -5,17 +5,17 @@ const engine = new BABYLON.Engine(canvas, true);
 
 const PLANET_COLORS = {
 
-    Terra:     new BABYLON.Color3(0.20, 0.80, 0.25),
-    Moon:      new BABYLON.Color3(0.85, 0.85, 0.85),
-    Mars:      new BABYLON.Color3(0.80, 0.30, 0.20),
-    Triton:    new BABYLON.Color3(0.30, 0.70, 1.00),
-    Aurelia:   new BABYLON.Color3(1.00, 0.85, 0.20),
-    Petram:    new BABYLON.Color3(0.55, 0.35, 0.15),
-    Titan:     new BABYLON.Color3(0.95, 0.55, 0.15),
-    Alien:     new BABYLON.Color3(0.65, 0.25, 0.90),
-    Europa:    new BABYLON.Color3(0.60, 0.90, 1.00),
-    Kallista:  new BABYLON.Color3(0.35, 0.35, 0.35),
-    Tartarus3: new BABYLON.Color3(0.60, 0.10, 0.10)
+    Terra:     new BABYLON.Color3(0.18, 0.65, 0.25),
+    Moon:      new BABYLON.Color3(0.78, 0.78, 0.78),
+    Mars:      new BABYLON.Color3(0.72, 0.28, 0.18),
+    Triton:    new BABYLON.Color3(0.45, 0.75, 1.00),
+    Aurelia:   new BABYLON.Color3(0.95, 0.82, 0.18),
+    Petram:    new BABYLON.Color3(0.50, 0.34, 0.18),
+    Titan:     new BABYLON.Color3(0.95, 0.58, 0.15),
+    Alien:     new BABYLON.Color3(0.62, 0.22, 0.85),
+    Europa:    new BABYLON.Color3(0.65, 0.92, 1.00),
+    Kallista:  new BABYLON.Color3(0.32, 0.32, 0.32),
+    Tartarus3: new BABYLON.Color3(0.55, 0.08, 0.08)
 
 };
 
@@ -35,13 +35,19 @@ function createPlanet(scene, p) {
         p.z / SCENE_SCALE
     );
 
-    // Поки що всі планети одного кольору
-    const material = new BABYLON.StandardMaterial(p.name + "_mat", scene);
-    material.emissiveColor =
-    PLANET_COLORS[p.name] ??
+const material = new BABYLON.StandardMaterial(
+    p.name + "_mat",
+    scene
+);
+
+material.diffuseColor =
+    PLANET_COLORS[p.name] ||
     new BABYLON.Color3(0.8,0.8,0.8);
 
-    sphere.material = material;
+// майже прибираємо блиск
+material.specularColor = BABYLON.Color3.Black();
+
+sphere.material = material;
 
     sphere.metadata = p;
 
