@@ -4,6 +4,7 @@ const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 
 const createScene = () => {
+	console.log("PLANETS:", planets);
 
     const scene = new BABYLON.Scene(engine);
 	BABYLON.MeshBuilder.CreateSphere(
