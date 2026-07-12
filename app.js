@@ -54,14 +54,16 @@ const createScene = () => {
     );
 
     // ---------- Камера ----------
-    const camera = new BABYLON.ArcRotateCamera(
+const camera = new BABYLON.ArcRotateCamera(
     "camera",
-    Math.PI / 2,
+    Math.PI / 4,
     Math.PI / 3,
-    20000,
-    BABYLON.Vector3.Zero(),
+    size * 3,
+    center,
     scene
 );
+
+camera.setTarget(center);
 
     camera.attachControl(canvas, true);
 
