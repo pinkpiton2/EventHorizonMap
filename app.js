@@ -3,6 +3,22 @@ const SCENE_SCALE = 5000;
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
 
+const PLANET_COLORS = {
+
+    Terra:     new BABYLON.Color3(0.20, 0.80, 0.25),
+    Moon:      new BABYLON.Color3(0.85, 0.85, 0.85),
+    Mars:      new BABYLON.Color3(0.80, 0.30, 0.20),
+    Triton:    new BABYLON.Color3(0.30, 0.70, 1.00),
+    Aurelia:   new BABYLON.Color3(1.00, 0.85, 0.20),
+    Petram:    new BABYLON.Color3(0.55, 0.35, 0.15),
+    Titan:     new BABYLON.Color3(0.95, 0.55, 0.15),
+    Alien:     new BABYLON.Color3(0.65, 0.25, 0.90),
+    Europa:    new BABYLON.Color3(0.60, 0.90, 1.00),
+    Kallista:  new BABYLON.Color3(0.35, 0.35, 0.35),
+    Tartarus3: new BABYLON.Color3(0.60, 0.10, 0.10)
+
+};
+
 function createPlanet(scene, p) {
 
     const sphere = BABYLON.MeshBuilder.CreateSphere(
@@ -21,7 +37,9 @@ function createPlanet(scene, p) {
 
     // Поки що всі планети одного кольору
     const material = new BABYLON.StandardMaterial(p.name + "_mat", scene);
-    material.emissiveColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+    material.emissiveColor =
+    PLANET_COLORS[p.name] ??
+    new BABYLON.Color3(0.8,0.8,0.8);
 
     sphere.material = material;
 
@@ -62,16 +80,6 @@ const createScene = () => {
     planets.forEach(p => {
 
         const sphere = createPlanet(scene, p);
-
-        // Terra зелена
-        if (p.name === "Terra") {
-            sphere.material.emissiveColor = new BABYLON.Color3(0, 1, 0);
-        }
-
-        // Moon білий
-        if (p.name === "Moon") {
-            sphere.material.emissiveColor = new BABYLON.Color3(1, 1, 1);
-        }
 
     });
 	
