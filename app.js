@@ -84,22 +84,24 @@ const createScene = () => {
     });
 
 // ---------- Клік ----------
+
 scene.onPointerObservable.add((pointerInfo) => {
-    // Перевірка типу події та влучання
-    if (pointerInfo.type !== BABYLON.PointerEventTypes.POINTERPICK || 
-        !pointerInfo.pickInfo?.hit) return;
+    if (pointerInfo.type !== BABYLON.PointerEventTypes.POINTERPICK) return;
+    if (pointerInfo.pickInfo?.hit && pointerInfo.pickInfo.pickedMesh?.metadata) {
+        const p = pointerInfo.pickInfo.pickedMesh.metadata;
+        const container = document.getElementById("planetInfo");
+        if (container) {
+            container.innerHTML = `<h3>${p.name}</h3>` +
+                `<b>X:</b> ${p.x.toLocaleString()}<br>` +
+                `<b>Y:</b> ${p.y.toLocaleString()}<br>` +
+                `<b>Z:</b> ${p.z.toLocaleString()}<br><br>` +
+                `<b>Radius:</b> ${p.radius.toLocaleString()} m`;
+        }
+    }
+});
+// ... (інша частина сцени)
 
-    const mesh = pointerInfo.pickInfo.pickedMesh;
-    if (!mesh || !mesh.metadata) return;
-
-    // Вивід даних
-    const p = mesh.metadata;
-    document.getElementById("planetInfo").innerHTML = `
-        <h3>${p.name}</h3>
-        <b>X:</b> ${p.x.toLocaleString()}<br>
-        ... (решта вашого HTML)
-    `;
-}););, BABYLON.PointerEventTypes.POINTERPICK);
+););, BABYLON.PointerEventTypes.POINTERPICK);
 
     return scene;
 };
