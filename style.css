@@ -26,3 +26,43 @@ html, body {
     font-family:Arial;
     z-index:100;
 }
+
+#planetList{
+    position:absolute;
+    left:10px;
+    top:10px;
+
+    width:180px;
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:rgba(0,0,0,.65);
+
+    color:white;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    font-family:Arial;
+}
+
+#planetList h3{
+    margin:0 0 10px 0;
+}
+
+.planetItem{
+
+    cursor:pointer;
+
+    padding:4px;
+
+    border-radius:4px;
+}
+
+.planetItem:hover{
+
+    background:#444;
+}
+

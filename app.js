@@ -74,6 +74,35 @@ const createScene = () => {
         }
 
     });
+	
+	const list = document.getElementById("planetList");
+
+list.innerHTML = "<h3>Планети</h3>";
+
+planets.forEach(p => {
+
+    const item = document.createElement("div");
+
+    item.className = "planetItem";
+    item.textContent = p.name;
+
+    item.onclick = () => {
+
+        camera.setTarget(
+            new BABYLON.Vector3(
+                p.x / SCENE_SCALE,
+                p.y / SCENE_SCALE,
+                p.z / SCENE_SCALE
+            )
+        );
+
+        camera.radius = 80;
+
+    };
+
+    list.appendChild(item);
+
+});
 
     // Клік по планеті
     scene.onPointerObservable.add((pointerInfo) => {
