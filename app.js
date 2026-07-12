@@ -26,18 +26,18 @@ const createScene = () => {
         scene
     );
 
-    const sphere = BABYLON.MeshBuilder.CreateSphere(
-        "test",
-        {
-            diameter:50
-        },
-        scene
-    );
+const sphere = BABYLON.MeshBuilder.CreateSphere(
+    "Terra",
+    { diameter: 20 },
+    scene
+);
 
-    const mat = new BABYLON.StandardMaterial("mat", scene);
-    mat.emissiveColor = new BABYLON.Color3(1,0,0);
+sphere.position = BABYLON.Vector3.Zero();
 
-    sphere.material = mat;
+const mat = new BABYLON.StandardMaterial("mat", scene);
+mat.emissiveColor = new BABYLON.Color3(0, 1, 0);
+
+sphere.material = mat;
 
     return scene;
 }
