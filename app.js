@@ -1,3 +1,5 @@
+const SCENE_SCALE = 5000;
+
 const canvas = document.getElementById("renderCanvas");
 
 const engine = new BABYLON.Engine(canvas,true);
@@ -30,18 +32,16 @@ const createScene = ()=>{
         const sphere = BABYLON.MeshBuilder.CreateSphere(
             p.name,
             {
-                diameter:10
+                diameter:p.radius / SCENE_SCALE
             },
             scene
         );
 
-        sphere.position = new BABYLON.Vector3(
-
-            p.x/5000,
-            p.y/5000,
-            p.z/5000
-
-        );
+sphere.position = new BABYLON.Vector3(
+    p.x / SCENE_SCALE,
+    p.y / SCENE_SCALE,
+    p.z / SCENE_SCALE
+);
 
         sphere.metadata = p;
 
@@ -63,7 +63,19 @@ X ${m.metadata.x}<br>
 Y ${m.metadata.y}<br>
 Z ${m.metadata.z}<br>
 
-Radius ${m.metadata.radius}
+document.getElementById("planetInfo").innerHTML = `
+<h3>${m.metadata.name}</h3>
+
+<b>X</b> ${m.metadata.x}<br>
+<b>Y</b> ${m.metadata.y}<br>
+<b>Z</b> ${m.metadata.z}<br><br>
+
+<b>Surface radius</b><br>
+${m.metadata.radius.toLocaleString()} m<br><br>
+
+<b>Gravity radius</b><br>
+${m.metadata.gravity.toLocaleString()} m
+`;
 
 `;
 
