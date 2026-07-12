@@ -10,16 +10,31 @@
 </head>
 <body>
 
-<div id="info">
-    <h2>Space Engineers Map</h2>
-    <div id="planetInfo">
-        Натисни на планету
-    </div>
-	<div id="planetList"></div>
+<div id="layout">
+
+    <aside id="leftPanel">
+        <h2>🪐 Планети</h2>
+
+        <div id="planetList"></div>
+    </aside>
+
+    <main id="centerPanel">
+        <canvas id="renderCanvas"></canvas>
+    </main>
+
+    <aside id="rightPanel">
+
+        <h2>ℹ Інформація</h2>
+
+        <div id="planetInfo">
+            Виберіть планету зі списку або клацніть по ній.
+        </div>
+
+    </aside>
+
 </div>
 
-<canvas id="renderCanvas"></canvas>
-
+<script src="https://cdn.babylonjs.com/babylon.js"></script>
 <script src="planets.js"></script>
 <script src="app.js"></script>
 

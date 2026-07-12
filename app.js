@@ -96,7 +96,10 @@ planets.forEach(p => {
             )
         );
 
-        camera.radius = 80;
+        camera.radius = Math.max(
+    30,
+    p.radius / SCENE_SCALE * 6
+);
 
     };
 
