@@ -39,6 +39,26 @@ mat.emissiveColor = new BABYLON.Color3(0, 1, 0);
 
 sphere.material = mat;
 
+// ---------- Moon ----------
+
+const moon = BABYLON.MeshBuilder.CreateSphere(
+    "Moon",
+    { diameter: 8 },
+    scene
+);
+
+moon.position = new BABYLON.Vector3(
+    16384.5 / SCENE_SCALE,
+    136384.5 / SCENE_SCALE,
+    -113615.5 / SCENE_SCALE
+);
+
+const moonMat = new BABYLON.StandardMaterial("moonMat", scene);
+moonMat.emissiveColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+
+moon.material = moonMat;
+
+
     return scene;
 }
 
