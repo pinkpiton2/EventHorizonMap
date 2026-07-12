@@ -6,6 +6,11 @@ const engine = new BABYLON.Engine(canvas, true);
 const createScene = () => {
 
     const scene = new BABYLON.Scene(engine);
+	BABYLON.MeshBuilder.CreateSphere(
+    "test",
+    {diameter:100},
+    scene
+);
     scene.clearColor = new BABYLON.Color4(0, 0, 0, 1);
 
     // Освітлення
