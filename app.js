@@ -83,22 +83,23 @@ const createScene = () => {
 
     });
 
-    // ---------- Клік ----------
+// ---------- Клік ----------
 scene.onPointerObservable.add((pointerInfo) => {
-    // Перевірка типу події
-    if (pointerInfo.type !== BABYLON.PointerEventTypes.POINTERPICK) return;
+    // Перевірка типу події та влучання
+    if (pointerInfo.type !== BABYLON.PointerEventTypes.POINTERPICK || 
+        !pointerInfo.pickInfo?.hit) return;
 
-    // Безпечний доступ до метаданих
-    const p = pointerInfo.pickInfo?.pickedMesh?.metadata;
-    if (!p) return;
+    const mesh = pointerInfo.pickInfo.pickedMesh;
+    if (!mesh || !mesh.metadata) return;
 
-    // Оновлення інтерфейсу
+    // Вивід даних
+    const p = mesh.metadata;
     document.getElementById("planetInfo").innerHTML = `
         <h3>${p.name}</h3>
-        X: ${p.x.toLocaleString()}<br>
-        ...
+        <b>X:</b> ${p.x.toLocaleString()}<br>
+        ... (решта вашого HTML)
     `;
-});, BABYLON.PointerEventTypes.POINTERPICK);
+}););, BABYLON.PointerEventTypes.POINTERPICK);
 
     return scene;
 };
